@@ -12,6 +12,22 @@ pub enum T0104 {
     V2_5
 }
 
+impl T0104 {
+    pub fn from_str(s: &str) -> Option<Self> {
+        match s {
+            "2.0" => Some(T0104::V2_0),
+            "2.0D" => Some(T0104::V2_0D),
+            "2.1" => Some(T0104::V2_1),
+            "2.2" => Some(T0104::V2_2),
+            "2.3" => Some(T0104::V2_3),
+            "2.3.1" => Some(T0104::V2_3_1),
+            "2.4" => Some(T0104::V2_4),
+            "2.5" => Some(T0104::V2_5),
+            _ => None
+        }
+    }
+}
+
 
 pub enum T0399 {
     ABW,
@@ -528,4 +544,31 @@ pub struct VersionIdentifier {
     pub vid3: Option<CodedElement>,
 }
 
+/*
+
+Verifico solamente T0104 quindi versione
+PErche sono stupido e non capisco gli altri
+due come verificarli
+*/
+
+impl VersionIdentifier {
+    pub fn parse(s: &str) -> Option<Self>{
+        let parts: Vec<&str> = s.split('^').collect();
+
+        if parts.len() != 1 {
+            return None;
+        }
+
+        let id = T0104::from_str(parts.get(0)?);
+
+        Some(
+            VersionIdentifier{
+                vid1: id?,
+                vid2: None,
+                vid3: None
+            }
+        )
+
+    }
+}
 
