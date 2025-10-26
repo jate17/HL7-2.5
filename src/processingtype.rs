@@ -40,10 +40,23 @@ impl T0207 {
 
 pub struct ProcessingType {
     pub processingid: T0103,
-    pub processingmode: T0207,
+    pub processingmode: Option<T0207>,
 }
 
+impl ProcessingType {
+    pub fn parse(s: &str) -> Option<Self> {
+        let parts: Vec<&str> = s.split('^').collect();
 
+        let id = T0103::from_str(parts.get(0)?);
+
+        let mode = parts.get(1).and_then(|v| T0207::from_str(v));
+
+        Some(ProcessingType {
+            processingid: id?,
+            processingmode: mode,
+        })
+    }
+}
 
 
 

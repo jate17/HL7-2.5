@@ -1,13 +1,14 @@
 //mod header;
 mod messagetype;
-//mod processingtype;
+mod processingtype;
 //mod versionidentifier;
 //mod codedelement;
 //mod id;
 
-use crate::messagetype::MessageType;
+
+
 
 fn main() {
-
+    test_processing_type();
+    println!("ProcessingType tests passed");
 }
-
