@@ -1,9 +1,10 @@
-//mod header;
+mod header;
 mod messagetype;
 mod processingtype;
 mod versionidentifier;
 mod codedelement;
-//mod id;
+mod id;
+mod entityidentifier;
 
 use crate::versionidentifier::VersionIdentifier;
 

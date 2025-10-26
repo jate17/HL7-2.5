@@ -1,15 +1,54 @@
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
 
-
-
 use crate::messagetype::MessageType;
 use crate::processingtype::ProcessingType;
 use crate::versionidentifier::VersionIdentifier;
 use crate::versionidentifier::T0399;
 use crate::codedelement::CodedElement;
 use crate::entityidentifier::EntityIdentifier;
-use crate::id:IDs;
+use crate::id::IDs;
+
+pub enum T0155 {
+    AL,
+    ER,
+    NE,
+    SU
+}
+
+impl T0155 {
+    pub fn from_str(s: &str) -> Option<Self> {
+        match s{
+            "AL" => Some(T0155::AL),
+            "ER" => Some(T0155::ER),
+            "NE" => Some(T0155::NE),
+            "SU" => Some(T0155::SU),
+            _ => None
+        }
+    }
+}
+
+
+
+pub enum T0356 {
+    V2_3,
+    Iso_2022_1994
+}
+
+impl T0356 {
+    pub fn from_str(s: &str) -> Option<Self> {
+        match s{
+            "2.3" => Some(T0356::V2_3),
+            "ISO2022-1994" => Some(T0356::Iso_2022_1994),
+            _ => None
+        }
+    }
+}
+
+
+
+
+
 
 pub struct Header {
     pub msh1: String, // Filed Seperator
@@ -24,14 +63,14 @@ pub struct Header {
     pub msh10: String,
     pub msh11: ProcessingType,
     pub msh12: VersionIdentifier,
-    pub msh13: Option<I32>,
+    pub msh13: Option<i32>,
     pub msh14: Option<String>,
-    pub msh15: Option<IDs>,
-    pub msh16: Option<IDs>,
+    pub msh15: Option<T0155>,
+    pub msh16: Option<T0155>,
     pub msh17: Option<T0399>,
-    pub msh18: Option<IDs>,
+    pub msh18: Option<IDs>,  //Null perch nnon ho voglia di farlo
     pub msh19: Option<CodedElement>,
-    pub msh20: Option<IDs>,
+    pub msh20: Option<T0356>,
     pub msh21: Option<EntityIdentifier>,
 }
 
