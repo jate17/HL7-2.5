@@ -6,6 +6,7 @@ use chrono::NaiveDate;
 use crate::messagetype::MessageType;
 use crate::processingtype::ProcessingType;
 use crate::versionidentifier::VersionIdentifier;
+use crate::versionidentifier::T0399;
 use crate::codedelement::CodedElement;
 use crate::entityidentifier::EntityIdentifier;
 use crate::id:IDs;
@@ -27,7 +28,7 @@ pub struct Header {
     pub msh14: Option<String>,
     pub msh15: Option<IDs>,
     pub msh16: Option<IDs>,
-    pub msh17: Option<IDs>,
+    pub msh17: Option<T0399>,
     pub msh18: Option<IDs>,
     pub msh19: Option<CodedElement>,
     pub msh20: Option<IDs>,
